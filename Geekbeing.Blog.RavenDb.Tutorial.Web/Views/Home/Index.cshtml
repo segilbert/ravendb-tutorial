@@ -1,0 +1,39 @@
+﻿@using System.Globalization
+@model Geekbeing.Blog.RavenDb.Tutorial.Web.Models.PeoplePagedList
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+	.user-list {
+		list-style-type: none;
+	}
+</style>
+
+<ul class="user-list">
+    @foreach(var person in Model.GetCurrent(Model.PageNumber))
+    {
+        <li>
+            @person.Name, @person.Surname, @person.Age
+        </li>
+    }
+</ul>
+
+<div class="pagination">
+
+<ul>
+    @for (int i = 1; i <= Model.Total/Model.PerPage; i++)
+    {
+        if (i == Model.PageNumber)
+        {
+           <li class="active"> @Html.ActionLink(@i.ToString(CultureInfo.InvariantCulture), "Index", "Home", new RouteValueDictionary { { "pageNumber", @i.ToString(CultureInfo.InvariantCulture) } }, null) </li>
+        }
+        else
+        {
+            <li> @Html.ActionLink(@i.ToString(CultureInfo.InvariantCulture), "Index", "Home", new RouteValueDictionary { {"pageNumber" , @i}}, null) </li>  
+        }
+        
+    }
+</ul>
+</div>

@@ -69,13 +69,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geekbeing.Blog.RavenDb.Tutorial.Initializer\Geekbeing.Blog.RavenDb.Tutorial.Initializer.csproj">
-      <Project>{8832963E-5E66-4F39-8894-229ADD1B1550}</Project>
-      <Name>Geekbeing.Blog.RavenDb.Tutorial.Initializer</Name>
+    <ProjectReference Include="..\Geekbeing.Blog.RavenDb.Tutorial.Lib\Geekbeing.Blog.RavenDb.Tutorial.Lib.csproj">
+      <Project>{BEE67F53-5E08-44FB-9909-183CF21ECBD7}</Project>
+      <Name>Geekbeing.Blog.RavenDb.Tutorial.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

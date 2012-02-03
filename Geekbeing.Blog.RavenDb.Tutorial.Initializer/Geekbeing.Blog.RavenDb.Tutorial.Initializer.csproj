@@ -69,13 +69,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakePeopleProvider.cs" />
-    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Geekbeing.Blog.RavenDb.Tutorial.Lib\Geekbeing.Blog.RavenDb.Tutorial.Lib.csproj">
+      <Project>{BEE67F53-5E08-44FB-9909-183CF21ECBD7}</Project>
+      <Name>Geekbeing.Blog.RavenDb.Tutorial.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

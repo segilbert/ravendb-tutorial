@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FizzWare.NBuilder;
 using FizzWare.NBuilder.Generators;
+using Geekbeing.Blog.RavenDb.Tutorial.Lib;
 
 namespace Geekbeing.Blog.RavenDb.Tutorial.Initializer
 {

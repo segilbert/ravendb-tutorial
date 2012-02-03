@@ -9,7 +9,7 @@ namespace Geekbeing.Blog.RavenDb.Tutorial.Initializer
     class Program
     {
         private const string DatabaseName = "People";
-        private const int PeopleCount = 100;
+        private const int PeopleCount = 220;
 
         static void Main()
         {
