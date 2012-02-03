@@ -2,33 +2,17 @@
 using System.Web.Mvc;
 using Geekbeing.Blog.RavenDb.Tutorial.Lib;
 using Geekbeing.Blog.RavenDb.Tutorial.Web.Models;
-using Raven.Client;
-using Raven.Client.Document;
-using Raven.Client.Extensions;
 using Raven.Client.Linq;
 
 namespace Geekbeing.Blog.RavenDb.Tutorial.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-         private const string DatabaseName = "People";
-         private static IDocumentStore _store;
-
-         public HomeController()
-         {
-             if (_store == null)
-             {
-                 _store = new DocumentStore { ConnectionStringName = DatabaseName };
-                 _store.Initialize();
-                 _store.DatabaseCommands.EnsureDatabaseExists(DatabaseName);    
-             }
-         }
-
         public ActionResult Index(int pageNumber = 1)
         {
             RavenQueryStatistics stats;
             IQueryable<Person> queriedPeople;
-            using (var session = _store.OpenSession())
+            using (var session = DocumentStore.OpenSession())
             {
                 var enforceTotalResults = session.Query<Person>().Statistics(out stats).Take(0).ToList();
                 queriedPeople = session.Query<Person>();
