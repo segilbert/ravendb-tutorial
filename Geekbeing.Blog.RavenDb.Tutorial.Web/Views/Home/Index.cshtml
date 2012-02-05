@@ -12,7 +12,7 @@
 </style>
 
 <ul class="user-list">
-    @foreach(var person in Model.GetCurrent(Model.PageNumber))
+    @foreach(var person in Model.ToBeDisplayed)
     {
         <li>
             @person.Name, @person.Surname, @person.Age

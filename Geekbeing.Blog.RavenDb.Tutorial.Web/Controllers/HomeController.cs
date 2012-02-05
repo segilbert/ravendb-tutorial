@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Geekbeing.Blog.RavenDb.Tutorial.Lib;
 using Geekbeing.Blog.RavenDb.Tutorial.Web.Models;
@@ -8,16 +9,19 @@ namespace Geekbeing.Blog.RavenDb.Tutorial.Web.Controllers
 {
     public class HomeController : BaseController
     {
+        private const int ResultsPerPage = 10;
+
         public ActionResult Index(int pageNumber = 1)
         {
+            IEnumerable<Person> people;
             RavenQueryStatistics stats;
             IQueryable<Person> queriedPeople;
             using (var session = DocumentStore.OpenSession())
             {
-                var enforceTotalResults = session.Query<Person>().Statistics(out stats).Take(0).ToList();
-                queriedPeople = session.Query<Person>();
+                queriedPeople = session.Query<Person>().Statistics(out stats);
+                people = queriedPeople.Skip((pageNumber - 1) * ResultsPerPage).Take(ResultsPerPage).ToList();
             }
-            PeoplePagedList list = new PeoplePagedList(queriedPeople) {PageNumber = pageNumber, PerPage = 10, Total = stats.TotalResults};
+            PeoplePagedList list = new PeoplePagedList(people, stats.TotalResults, ResultsPerPage, pageNumber);
             return View(list);
         }
 
